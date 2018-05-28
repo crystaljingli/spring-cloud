@@ -1,0 +1,11 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: comsumer-movie
+eureka:
+  client:
+     service-url:
+          default-zone: http://localhost:8761/eureka
+     instances:
+          preprefer-ip-address: true
