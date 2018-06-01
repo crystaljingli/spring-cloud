@@ -3,9 +3,28 @@ server:
 spring:
   application:
     name: comsumer-movie
+
+#eureka
 eureka:
   client:
      service-url:
-          default-zone: http://localhost:8761/eureka
-     instances:
-          preprefer-ip-address: true
+          default-zone: http://user:123456@localhost:8761/eureka
+
+
+
+#feign 请求或者返回需要压缩 但在SR4中并不生效
+#feign:
+#  compression:
+#    request:
+#      enable: true
+#      mime-types: text/xml,application/xml,application/json
+#      min-request-size: 2048
+#logging:
+#  level:
+#    com.lijing.comsumermovie.config.FeignLogConfiguration: debug
+
+#feign禁用hystrix
+#feign:
+#   hystrix:
+#     enabled:
+#        false

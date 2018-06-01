@@ -7,7 +7,6 @@ eureka:
   client:
      service-url:
           #default-zone: http://localhost:8761/eureka,http://localhost:8761/eureka 注册多个 , 分割
-          default-zone: http://localhost:8761/eureka
-     instances:
-          preprefer-ip-address: true
+          default-zone: http://user:123456@localhost:8761/eureka
+
 

@@ -1,6 +1,7 @@
 package com.lijing.comsumermovie.controller;
 
 import com.lijing.comsumermovie.entity.User;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +19,16 @@ import org.springframework.web.client.RestTemplate;
 public class MovieController {
     @Autowired
     private RestTemplate restTemplate;
-
-    @GetMapping("/user/{id}")
+    @HystrixCommand(fallbackMethod = "findByIdFallback")
+    @GetMapping("/movie/user/{id}")
     public User findById(@PathVariable Long id){
-        return restTemplate.getForObject("http://localhost:8000/"+id, User.class);
+        return restTemplate.getForObject("http://PROVIDER-USER/"+id, User.class);
+    }
+
+    public User findByIdFallback(Long id){
+        User user = new User();
+        user.setId(-1L);
+        user.setUserName("默认用户");
+        return user;
     }
 }
